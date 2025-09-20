@@ -23,6 +23,7 @@ export interface Translations {
     projects: string;
     values: string;
     join: string;
+    license: string;
   };
   hero: {
     title: string;
@@ -55,7 +56,6 @@ export interface Translations {
     subtitle: string;
     quote: string;
     passion: ValueItem;
-    excellence: ValueItem;
     community: ValueItem;
     opensource: ValueItem;
   };
@@ -80,7 +80,8 @@ export const translations: Record<Language, Translations> = {
       home: "Trang chủ",
       projects: "Dự án",
       values: "Giá trị",
-      join: "Tham gia"
+      join: "Tham gia",
+      license: "Giấy phép"
     },
     hero: {
       title: "DEVELOPERS IN BLACK",
@@ -135,11 +136,6 @@ export const translations: Record<Language, Translations> = {
         description: "Chúng tôi code vì yêu thích, không vì tiền bạc",
         detail: "Passion là động lực chính của chúng tôi. Khi bạn làm việc vì đam mê, chất lượng sẽ tự nhiên theo sau."
       },
-      excellence: {
-        title: "Xuất sắc",
-        description: "Luôn cố gắng tạo ra những sản phẩm tốt nhất có thể",
-        detail: "Chúng tôi không chấp nhận 'tạm được'. Mỗi dự án đều được thực hiện với tiêu chuẩn cao nhất."
-      },
       community: {
         title: "Cộng đồng",
         description: "Xây dựng và hỗ trợ cộng đồng developer Việt Nam",
@@ -178,7 +174,8 @@ export const translations: Record<Language, Translations> = {
       home: "Home",
       projects: "Projects", 
       values: "Values",
-      join: "Join"
+      join: "Join",
+      license: "License"
     },
     hero: {
       title: "DEVELOPERS IN BLACK",
@@ -232,11 +229,6 @@ export const translations: Record<Language, Translations> = {
         title: "Passion",
         description: "We code for love, not for money",
         detail: "Passion is our main driving force. When you work for passion, quality naturally follows."
-      },
-      excellence: {
-        title: "Excellence", 
-        description: "Always strive to create the best possible products",
-        detail: "We don't accept 'good enough'. Every project is executed to the highest standards."
       },
       community: {
         title: "Community",
