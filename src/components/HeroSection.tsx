@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown, Github, Coffee } from 'lucide-react';
+import { Github, Coffee } from 'lucide-react';
 import { Translations } from '../data/translations';
 
 interface HeroSectionProps {
@@ -19,7 +19,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ t }) => {
               <img 
                 src="/logo.png" 
                 alt="Developers in Black Logo" 
-                className="w-40 h-40 object-contain"
+                className="w-45 h-45 object-contain"
               />
             </div>
             {/* Radar sweep effect */}

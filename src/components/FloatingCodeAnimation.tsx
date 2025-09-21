@@ -63,7 +63,7 @@ const FloatingCodeAnimation: React.FC<FloatingCodeAnimationProps> = ({ snippetCo
     '<meta name="author" content="Developers in Blacks" />'
   ];
 
-  const colors = ['text-green-400/5', 'text-blue-400/4', 'text-purple-400/6', 'text-cyan-400/3', 'text-yellow-400/4'];
+  const colors = ['text-green-400/15', 'text-blue-400/12', 'text-purple-400/16', 'text-cyan-400/9', 'text-yellow-400/12'];
   const sizes = ['text-xs', 'text-sm'];
   const animations = ['float-random-1', 'float-random-2', 'float-random-3', 'float-random-4'];
 

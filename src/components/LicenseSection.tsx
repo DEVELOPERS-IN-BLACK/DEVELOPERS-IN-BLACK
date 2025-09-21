@@ -66,7 +66,7 @@ const LicenseSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-black relative overflow-hidden">
+    <section id="license" className="py-20 bg-black relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
         {/* Header */}
         <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-green-400/20 to-blue-400/20 rounded-full mb-6">
@@ -118,7 +118,7 @@ const LicenseSection: React.FC = () => {
         {/* Link đến LICENSE file */}
         <div className="mt-8">
           <a
-            href="/LICENSE"
+            href="https://github.com/DEVELOPERS-IN-BLACK/LICENSE/blob/main/LICENSE"
             target="_blank"
             rel="noopener noreferrer"
             className="mystery-hover px-6 py-3 rounded-xl border border-green-400/30 hover:border-green-400/60 bg-gray-900/40 hover:bg-gray-800/60 inline-flex items-center space-x-2 transition-all duration-300"
