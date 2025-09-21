@@ -17,6 +17,8 @@ const DevelopersInBlack: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [language, setLanguage] = useState<Language>('en');
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [showHeaderLogo, setShowHeaderLogo] = useState<boolean>(false);
+  const heroLogoRef = React.useRef<HTMLDivElement>(null);
   
   // Use custom hook for scroll and mouse tracking
   const { scrollY } = useScrollAndMouse();
@@ -39,6 +41,31 @@ const DevelopersInBlack: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(timer);
+  }, []);
+
+  // Track hero logo visibility using Intersection Observer
+  useEffect(() => {
+    if (!heroLogoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        // Show header logo when hero logo is NOT intersecting (out of view)
+        setShowHeaderLogo(!entry.isIntersecting);
+      },
+      {
+        // Trigger when only 10% of the hero logo is visible
+        threshold: 0.1,
+        // Add some margin to trigger slightly before completely out of view
+        rootMargin: '0px 0px -20px 0px'
+      }
+    );
+
+    observer.observe(heroLogoRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
 
@@ -117,20 +144,28 @@ const DevelopersInBlack: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2 sm:space-x-4">
-              <div className="relative">
+              <div className={`relative transition-all duration-700 ease-in-out ${
+                showHeaderLogo 
+                  ? 'opacity-100 scale-100 translate-y-0' 
+                  : 'opacity-0 scale-75 -translate-y-4'
+              }`}>
                 <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full shadow-2xl border-2 border-green-400/60 bg-gradient-to-br from-white/10 to-gray-400/10 backdrop-blur-md flex items-center justify-center overflow-hidden">
                   <img 
                     src="/logo.png" 
                     alt="Developers in Black Logo" 
-                    className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain"
+                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain"
                   />
                 </div>
                 <div className="absolute -inset-2 border border-green-400/30 rounded-full animate-spin" style={{animationDuration: '8s'}} />
                 <div className="absolute -inset-4 border border-green-400/20 rounded-full animate-spin" style={{animationDuration: '12s', animationDirection: 'reverse'}} />
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50" />
               </div>
-              <div className="hidden sm:block">
-                <h1 className="text-lg sm:text-xl font-bold tracking-wider bg-gradient-to-r from-white to-green-400 bg-clip-text text-transparent">{t.hero.title}</h1>
+              <div className={`hidden sm:block transition-all duration-700 ease-in-out ${
+                showHeaderLogo 
+                  ? 'translate-x-0' 
+                  : '-translate-x-16'
+              }`}>
+                <h1 className="text-lg sm:text-xl font-bold tracking-wider bg-gradient-to-r text-white bg-clip-text text-transparent">{t.hero.title}</h1>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <span className="text-xs bg-gradient-to-r from-green-600 to-green-400 px-2 sm:px-3 py-1 rounded-full shadow-lg shadow-green-400/20">OPEN SOURCE</span>
                   <span className="text-xs text-amber-400/80 font-light">EST. 2025</span>
@@ -220,7 +255,7 @@ const DevelopersInBlack: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <HeroSection t={t} />
+      <HeroSection t={t} logoRef={heroLogoRef} />
 
       {/* Stats Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900 border-y border-gray-800/50">
@@ -268,7 +303,7 @@ const DevelopersInBlack: React.FC = () => {
                   <img 
                     src="/logo.png" 
                     alt="Developers in Black Logo" 
-                    className="w-14 h-14 object-contain"
+                    className="w-16 h-16 object-contain"
                   />
                 </div>
                 <div className="absolute -inset-2 border border-green-400/30 rounded-full animate-spin" style={{animationDuration: '8s'}} />

@@ -4,16 +4,17 @@ import { Translations } from '../data/translations';
 
 interface HeroSectionProps {
   t: Translations;
+  logoRef: React.RefObject<HTMLDivElement>;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ t }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ t, logoRef }) => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20 px-4">
       <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-black to-gray-950" />
       
       <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
         <div className="mb-16">
-          <div className="relative inline-flex items-center justify-center w-56 h-56 mb-8">
+          <div ref={logoRef} className="relative inline-flex items-center justify-center w-56 h-56 mb-8">
             <div className="absolute inset-0 bg-gradient-to-br from-green-400/15 via-white/8 to-green-600/15 rounded-full animate-pulse" />
             <div className="relative w-44 h-44 rounded-full shadow-2xl border-4 border-green-400/60 bg-gradient-to-br from-white/10 to-gray-400/10 backdrop-blur-lg flex items-center justify-center overflow-hidden">
               <img 
